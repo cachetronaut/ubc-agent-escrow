@@ -1,0 +1,598 @@
+{
+  "receipt": {
+    "evidenceMode": "local-verifier-fixtures",
+    "state": "Repair recommendation",
+    "network": "Base Sepolia",
+    "task": "catalog-extraction-demo",
+    "revision": 2,
+    "artifactHash": "fd8c39da315f53f7167655274efcf05e9c7b65934dc41c114d55874c249c0483",
+    "criteriaHash": "cc9cfc13757bd7c4404521b99b82cc3cfbc6d29c7e7e69cf5fbe606e7ed138a8",
+    "policyVersion": 1,
+    "reportHash": "c5adbe796468d73b7e809a960f31fb57ebdf3b6d0180b9db2ec482733374453a",
+    "decision": "accept_repair",
+    "artifact": {
+      "revision": 2,
+      "snapshotHash": "342fe6ffa9314124c83f2275a955c96b9a2e05d845e9e7869c32c941b981bbe9",
+      "source": "urn:ubc-agent-escrow:catalog:2026-11-15:v1",
+      "rows": [
+        {
+          "sku": "A11",
+          "name": "Cedar notebook",
+          "priceCents": 1250,
+          "available": true
+        },
+        {
+          "sku": "B20",
+          "name": "Steel bottle",
+          "priceCents": 2400,
+          "available": false
+        },
+        {
+          "sku": "C31",
+          "name": "Canvas pouch",
+          "priceCents": 875,
+          "available": true
+        }
+      ],
+      "summary": "A11 and C31 are in stock at $12.50 and $8.75. B20 is sold out at $24.00. The quoted prices exclude delivery, and the snapshot gives no delivery fee."
+    },
+    "chainRead": {
+      "mode": "live-public-rpc-read",
+      "network": "Base Sepolia",
+      "chainId": 84532,
+      "rpc": "https://sepolia.base.org",
+      "blockNumber": 60881638,
+      "blockHash": "0xfbf16ea2602a3c962f025bea6ef2db7ea3fda8b4208751a7ae7019ed80d20734",
+      "contract": "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
+      "decimals": 6,
+      "totalSupplyRaw": "89332124674187378",
+      "observedAt": "2026-11-19T14:44:38.742Z"
+    },
+    "checks": [
+      {
+        "id": "schema",
+        "result": "PASS"
+      },
+      {
+        "id": "snapshot",
+        "result": "PASS"
+      },
+      {
+        "id": "catalog_values",
+        "result": "PASS"
+      },
+      {
+        "id": "faithfulness",
+        "votes": [
+          "94 / 100 · PASS",
+          "93 / 100 · PASS",
+          "72 / 100 · FAIL"
+        ],
+        "result": "PASS"
+      },
+      {
+        "id": "delivery_caveat",
+        "votes": [
+          "78 / 100 · FAIL",
+          "95 / 100 · PASS",
+          "96 / 100 · PASS"
+        ],
+        "result": "PASS"
+      }
+    ],
+    "transactions": []
+  },
+  "scenarios": {
+    "initial": {
+      "contractVersion": "1.0",
+      "componentId": "FUN-003",
+      "requestId": "2f5fd9f9-28d1-4ed9-8bc3-7de09f87551d",
+      "runId": "2f5fd9f9-28d1-4ed9-8bc3-7de09f87551d",
+      "status": "succeeded",
+      "result": {
+        "outcome": "approved",
+        "decision": "release",
+        "artifactHash": "891b4b1d460853847faafa95b982d954a6fb08b22569242e7b582058c8dcb703",
+        "criteriaHash": "cc9cfc13757bd7c4404521b99b82cc3cfbc6d29c7e7e69cf5fbe606e7ed138a8",
+        "phase": "delivery",
+        "context": {
+          "network": "solana-devnet",
+          "genesisHash": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+          "program": "11111111111111111111111111111111",
+          "task": "11111111111111111111111111111112",
+          "revision": 1,
+          "policyVersion": 1,
+          "expiry": 1795099778
+        },
+        "checks": [
+          {
+            "id": "schema",
+            "passed": true
+          },
+          {
+            "id": "snapshot",
+            "passed": true
+          },
+          {
+            "id": "catalog_values",
+            "passed": true
+          },
+          {
+            "id": "faithfulness",
+            "threshold": 85,
+            "votes": [
+              {
+                "model": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+                "score": 94,
+                "passed": true
+              },
+              {
+                "model": "z-ai/glm-5.3-flash",
+                "score": 93,
+                "passed": true
+              },
+              {
+                "model": "Qwen/Qwen3.8-27B",
+                "score": 72,
+                "passed": false
+              }
+            ],
+            "passed": true
+          },
+          {
+            "id": "delivery_caveat",
+            "threshold": 85,
+            "votes": [
+              {
+                "model": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+                "score": 78,
+                "passed": false
+              },
+              {
+                "model": "z-ai/glm-5.3-flash",
+                "score": 95,
+                "passed": true
+              },
+              {
+                "model": "Qwen/Qwen3.8-27B",
+                "score": 96,
+                "passed": true
+              }
+            ],
+            "passed": true
+          }
+        ],
+        "judges": [
+          {
+            "model": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+            "status": "succeeded",
+            "injection": false,
+            "checks": [
+              {
+                "id": "faithfulness",
+                "score": 94
+              },
+              {
+                "id": "delivery_caveat",
+                "score": 78
+              }
+            ]
+          },
+          {
+            "model": "z-ai/glm-5.3-flash",
+            "status": "succeeded",
+            "injection": false,
+            "checks": [
+              {
+                "id": "faithfulness",
+                "score": 93
+              },
+              {
+                "id": "delivery_caveat",
+                "score": 95
+              }
+            ]
+          },
+          {
+            "model": "Qwen/Qwen3.8-27B",
+            "status": "succeeded",
+            "injection": false,
+            "checks": [
+              {
+                "id": "faithfulness",
+                "score": 72
+              },
+              {
+                "id": "delivery_caveat",
+                "score": 96
+              }
+            ]
+          }
+        ],
+        "reportHash": "30b853f7f4a9abcef0bdc95227aeda50939d144f51b0302c09a25717246b1e43",
+        "verdict": {
+          "network": "solana-devnet",
+          "genesisHash": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+          "program": "11111111111111111111111111111111",
+          "task": "11111111111111111111111111111112",
+          "revision": 1,
+          "policyVersion": 1,
+          "expiry": 1795099778,
+          "artifactHash": "891b4b1d460853847faafa95b982d954a6fb08b22569242e7b582058c8dcb703",
+          "criteriaHash": "cc9cfc13757bd7c4404521b99b82cc3cfbc6d29c7e7e69cf5fbe606e7ed138a8",
+          "decision": "release",
+          "phase": "delivery",
+          "reportHash": "30b853f7f4a9abcef0bdc95227aeda50939d144f51b0302c09a25717246b1e43"
+        },
+        "authority": "named verifier signer; AI votes are off-chain evidence",
+        "attestationVerified": false
+      },
+      "errors": [],
+      "trace": {
+        "startedAtUtc": "2026-11-19T14:44:38.744Z",
+        "completedAtUtc": "2026-11-19T14:44:38.745Z",
+        "policyVersions": {
+          "grading": 1
+        },
+        "steps": []
+      }
+    },
+    "repaired": {
+      "contractVersion": "1.0",
+      "componentId": "FUN-003",
+      "requestId": "60bac2ba-b275-4779-bd7e-015c385bcae6",
+      "runId": "60bac2ba-b275-4779-bd7e-015c385bcae6",
+      "status": "succeeded",
+      "result": {
+        "outcome": "approved",
+        "decision": "accept_repair",
+        "artifactHash": "fd8c39da315f53f7167655274efcf05e9c7b65934dc41c114d55874c249c0483",
+        "criteriaHash": "cc9cfc13757bd7c4404521b99b82cc3cfbc6d29c7e7e69cf5fbe606e7ed138a8",
+        "phase": "repair",
+        "context": {
+          "network": "solana-devnet",
+          "genesisHash": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+          "program": "11111111111111111111111111111111",
+          "task": "11111111111111111111111111111112",
+          "revision": 2,
+          "policyVersion": 1,
+          "expiry": 1795099778
+        },
+        "checks": [
+          {
+            "id": "schema",
+            "passed": true
+          },
+          {
+            "id": "snapshot",
+            "passed": true
+          },
+          {
+            "id": "catalog_values",
+            "passed": true
+          },
+          {
+            "id": "faithfulness",
+            "threshold": 85,
+            "votes": [
+              {
+                "model": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+                "score": 94,
+                "passed": true
+              },
+              {
+                "model": "z-ai/glm-5.3-flash",
+                "score": 93,
+                "passed": true
+              },
+              {
+                "model": "Qwen/Qwen3.8-27B",
+                "score": 72,
+                "passed": false
+              }
+            ],
+            "passed": true
+          },
+          {
+            "id": "delivery_caveat",
+            "threshold": 85,
+            "votes": [
+              {
+                "model": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+                "score": 78,
+                "passed": false
+              },
+              {
+                "model": "z-ai/glm-5.3-flash",
+                "score": 95,
+                "passed": true
+              },
+              {
+                "model": "Qwen/Qwen3.8-27B",
+                "score": 96,
+                "passed": true
+              }
+            ],
+            "passed": true
+          }
+        ],
+        "judges": [
+          {
+            "model": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+            "status": "succeeded",
+            "injection": false,
+            "checks": [
+              {
+                "id": "faithfulness",
+                "score": 94
+              },
+              {
+                "id": "delivery_caveat",
+                "score": 78
+              }
+            ]
+          },
+          {
+            "model": "z-ai/glm-5.3-flash",
+            "status": "succeeded",
+            "injection": false,
+            "checks": [
+              {
+                "id": "faithfulness",
+                "score": 93
+              },
+              {
+                "id": "delivery_caveat",
+                "score": 95
+              }
+            ]
+          },
+          {
+            "model": "Qwen/Qwen3.8-27B",
+            "status": "succeeded",
+            "injection": false,
+            "checks": [
+              {
+                "id": "faithfulness",
+                "score": 72
+              },
+              {
+                "id": "delivery_caveat",
+                "score": 96
+              }
+            ]
+          }
+        ],
+        "reportHash": "c5adbe796468d73b7e809a960f31fb57ebdf3b6d0180b9db2ec482733374453a",
+        "verdict": {
+          "network": "solana-devnet",
+          "genesisHash": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+          "program": "11111111111111111111111111111111",
+          "task": "11111111111111111111111111111112",
+          "revision": 2,
+          "policyVersion": 1,
+          "expiry": 1795099778,
+          "artifactHash": "fd8c39da315f53f7167655274efcf05e9c7b65934dc41c114d55874c249c0483",
+          "criteriaHash": "cc9cfc13757bd7c4404521b99b82cc3cfbc6d29c7e7e69cf5fbe606e7ed138a8",
+          "decision": "accept_repair",
+          "phase": "repair",
+          "reportHash": "c5adbe796468d73b7e809a960f31fb57ebdf3b6d0180b9db2ec482733374453a"
+        },
+        "authority": "named verifier signer; AI votes are off-chain evidence",
+        "attestationVerified": false
+      },
+      "errors": [],
+      "trace": {
+        "startedAtUtc": "2026-11-19T14:44:38.745Z",
+        "completedAtUtc": "2026-11-19T14:44:38.745Z",
+        "policyVersions": {
+          "grading": 1
+        },
+        "steps": []
+      }
+    },
+    "quality": {
+      "contractVersion": "1.0",
+      "componentId": "FUN-003",
+      "requestId": "c9e1488f-5aad-4370-866f-1dd84e538b94",
+      "runId": "c9e1488f-5aad-4370-866f-1dd84e538b94",
+      "status": "succeeded",
+      "result": {
+        "outcome": "quality_rejected",
+        "decision": "refund",
+        "artifactHash": "3c3dec9180ad7608848946a779cf7deb41c561fe325b37206eb2120ed096e032",
+        "criteriaHash": "cc9cfc13757bd7c4404521b99b82cc3cfbc6d29c7e7e69cf5fbe606e7ed138a8",
+        "phase": "delivery",
+        "context": {
+          "network": "solana-devnet",
+          "genesisHash": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+          "program": "11111111111111111111111111111111",
+          "task": "11111111111111111111111111111112",
+          "revision": 1,
+          "policyVersion": 1,
+          "expiry": 1795099778
+        },
+        "checks": [
+          {
+            "id": "schema",
+            "passed": true
+          },
+          {
+            "id": "snapshot",
+            "passed": true
+          },
+          {
+            "id": "catalog_values",
+            "passed": false
+          }
+        ],
+        "judges": [],
+        "reportHash": "69104ab089ca2d7f9a8a59608409cfd324e80d15edc80bc66298ede659205f06",
+        "verdict": {
+          "network": "solana-devnet",
+          "genesisHash": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+          "program": "11111111111111111111111111111111",
+          "task": "11111111111111111111111111111112",
+          "revision": 1,
+          "policyVersion": 1,
+          "expiry": 1795099778,
+          "artifactHash": "3c3dec9180ad7608848946a779cf7deb41c561fe325b37206eb2120ed096e032",
+          "criteriaHash": "cc9cfc13757bd7c4404521b99b82cc3cfbc6d29c7e7e69cf5fbe606e7ed138a8",
+          "decision": "refund",
+          "phase": "delivery",
+          "reportHash": "69104ab089ca2d7f9a8a59608409cfd324e80d15edc80bc66298ede659205f06"
+        },
+        "authority": "named verifier signer; AI votes are off-chain evidence",
+        "attestationVerified": false
+      },
+      "errors": [],
+      "trace": {
+        "startedAtUtc": "2026-11-19T14:44:38.745Z",
+        "completedAtUtc": "2026-11-19T14:44:38.745Z",
+        "policyVersions": {
+          "grading": 1
+        },
+        "steps": []
+      }
+    },
+    "safety": {
+      "contractVersion": "1.0",
+      "componentId": "FUN-003",
+      "requestId": "3f3c1275-a8a7-47a0-a1bc-399f6cefba7c",
+      "runId": "3f3c1275-a8a7-47a0-a1bc-399f6cefba7c",
+      "status": "succeeded",
+      "result": {
+        "outcome": "safety_rejected",
+        "decision": null,
+        "artifactHash": "efecbf92ffd8f818d77649043967436b246063f99ed8ab0adba689d07851a0bd",
+        "criteriaHash": "cc9cfc13757bd7c4404521b99b82cc3cfbc6d29c7e7e69cf5fbe606e7ed138a8",
+        "phase": "delivery",
+        "context": {
+          "network": "solana-devnet",
+          "genesisHash": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+          "program": "11111111111111111111111111111111",
+          "task": "11111111111111111111111111111112",
+          "revision": 1,
+          "policyVersion": 1,
+          "expiry": 1795099778
+        },
+        "checks": [
+          {
+            "id": "instruction_safety",
+            "passed": false
+          }
+        ],
+        "judges": [],
+        "reportHash": "ed26ce2552d351f227b639248f61604188e946fe062acc2fa653e19367008683",
+        "verdict": null,
+        "authority": "named verifier signer; AI votes are off-chain evidence",
+        "attestationVerified": false
+      },
+      "errors": [],
+      "trace": {
+        "startedAtUtc": "2026-11-19T14:44:38.746Z",
+        "completedAtUtc": "2026-11-19T14:44:38.746Z",
+        "policyVersions": {
+          "grading": 1
+        },
+        "steps": []
+      }
+    },
+    "outage": {
+      "contractVersion": "1.0",
+      "componentId": "FUN-003",
+      "requestId": "8dce0d5c-33e9-4d7b-8dfa-46d49bb7a184",
+      "runId": "8dce0d5c-33e9-4d7b-8dfa-46d49bb7a184",
+      "status": "failed",
+      "result": {
+        "outcome": "unavailable",
+        "decision": null,
+        "artifactHash": "891b4b1d460853847faafa95b982d954a6fb08b22569242e7b582058c8dcb703",
+        "criteriaHash": "cc9cfc13757bd7c4404521b99b82cc3cfbc6d29c7e7e69cf5fbe606e7ed138a8",
+        "phase": "delivery",
+        "context": {
+          "network": "solana-devnet",
+          "genesisHash": "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG",
+          "program": "11111111111111111111111111111111",
+          "task": "11111111111111111111111111111112",
+          "revision": 1,
+          "policyVersion": 1,
+          "expiry": 1795099778
+        },
+        "checks": [
+          {
+            "id": "schema",
+            "passed": true
+          },
+          {
+            "id": "snapshot",
+            "passed": true
+          },
+          {
+            "id": "catalog_values",
+            "passed": true
+          }
+        ],
+        "judges": [
+          {
+            "model": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+            "status": "succeeded",
+            "injection": false,
+            "checks": [
+              {
+                "id": "faithfulness",
+                "score": 94
+              },
+              {
+                "id": "delivery_caveat",
+                "score": 78
+              }
+            ]
+          },
+          {
+            "model": "z-ai/glm-5.3-flash",
+            "status": "succeeded",
+            "injection": false,
+            "checks": [
+              {
+                "id": "faithfulness",
+                "score": 93
+              },
+              {
+                "id": "delivery_caveat",
+                "score": 95
+              }
+            ]
+          },
+          {
+            "model": "Qwen/Qwen3.8-27B",
+            "status": "failed",
+            "error": {
+              "code": "JUDGE_UNAVAILABLE_OR_INVALID",
+              "retryable": true
+            }
+          }
+        ],
+        "reportHash": "f4cc9c7b7f3d4126d1897469bb896471e311a0c97d63e73de4b73420c89fe2fa",
+        "verdict": null,
+        "authority": "named verifier signer; AI votes are off-chain evidence",
+        "attestationVerified": false
+      },
+      "errors": [
+        {
+          "code": "JUDGE_UNAVAILABLE_OR_INVALID",
+          "message": "Judge Qwen/Qwen3.8-27B unavailable or invalid",
+          "retryable": true
+        }
+      ],
+      "trace": {
+        "startedAtUtc": "2026-11-19T14:44:38.746Z",
+        "completedAtUtc": "2026-11-19T14:44:38.746Z",
+        "policyVersions": {
+          "grading": 1
+        },
+        "steps": []
+      }
+    }
+  }
+}

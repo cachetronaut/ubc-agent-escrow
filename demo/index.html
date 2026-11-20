@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#172a25">
+  <title>AgentEscrow / payment & warranty receipt</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="masthead"><a href="index.html" class="wordmark">AE<span> / AGENTESCROW</span></a><span>UBC 2026 · Agentic Payments & AI</span></header>
+  <main>
+    <section class="intro"><div><p class="eyebrow">WORK DELIVERED. PROMISES KEPT.</p><h1>A payment ends.<br>A warranty stays.</h1><p class="deck">One extraction job. Three judges. A 10% hold that stays accountable through claim, repair, and resolution.</p></div><aside class="mode"><span class="dot"></span><strong id="mode">OFFLINE EXAMPLE</strong><p id="mode-description">Illustrative workflow only. No transactions, wallet, or live AI calls.</p><label class="import">Open receipt JSON<input id="receipt-file" type="file" accept="application/json,.json"></label><button id="reset" class="text-button">Reset example ↗</button></aside></section>
+    <p id="notice" class="notice" role="status" aria-live="polite">The example uses 10 demo credits. Amounts and judge votes are illustrative.</p>
+    <div class="workspace">
+      <section class="receipt" aria-labelledby="receipt-title"><div class="receipt-heading"><div><p class="eyebrow">PAYMENT + WARRANTY RECEIPT</p><h2 id="receipt-title">Snapshot extraction</h2></div><span id="state" class="stamp">FUNDED</span></div>
+        <div class="money"><div><span>Paid to worker</span><strong id="paid">0 credits</strong></div><div><span>In warranty hold</span><strong id="held">0 credits</strong></div><div><span>Refunded to client</span><strong id="refunded">0 credits</strong></div></div>
+        <div class="balance"><span id="balance-text">Escrow funded · 10 credits</span><span id="revision">Revision 0</span></div>
+        <dl id="identity" class="identity"></dl>
+        <div class="section-label"><h3>Artifact under review</h3><span id="artifact-label">Awaiting delivery</span></div><pre id="artifact" class="artifact">No artifact delivered yet.</pre>
+        <div class="section-label"><h3>Per-check judge votes</h3><span>2 / 3 required per check</span></div><div class="table-scroll"><table><thead><tr><th scope="col">Check</th><th scope="col">Judge A</th><th scope="col">Judge B</th><th scope="col">Judge C</th><th scope="col">Result</th></tr></thead><tbody id="votes"></tbody></table></div>
+        <div class="section-label"><h3>Agreed deadlines</h3><span>Fixed when funded</span></div><dl id="deadlines" class="deadlines"></dl>
+        <div class="section-label"><h3>Transaction evidence</h3><span>No transaction in the rehearsal</span></div><ul id="transactions" class="transactions"></ul>
+      </section>
+      <aside class="journey"><p class="eyebrow">THE CLAIM → REPAIR JOURNEY</p><h2>Every dispute<br>has an ending.</h2><ol id="timeline"></ol><div id="actions" class="actions"></div><p class="policy">Owner limits → invited quote → fund → verify → pay 90% → retain 10%. A claim gets one repair attempt. An adjudication timeout refunds the remaining hold.</p><details><summary>Safety & authority</summary><p>Quality disagreement can request repair. Safety or judge availability failures cannot authorize payment. The rehearsal uses fixture scores and simulated balances. The local verifier returns an unsigned recommendation.</p></details></aside>
+    </div>
+    <details class="raw"><summary>Inspect receipt JSON</summary><pre id="raw"></pre></details>
+    <footer><span>AgentEscrow · Built for UBC 2026</span><span>Cachetronaut · Local prototype</span></footer>
+  </main>
+  <script defer src="app.mjs"></script>
+</body>
+</html>
